@@ -1,53 +1,202 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Shemin's Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shemin's Official Website</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #0f0f0f;
+            background-color: #000; /* Pure Black */
             color: #ffffff;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             text-align: center;
-            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
         }
-        h1 {
-            color: #ff3333;
-            font-size: 45px;
+
+        /* Matrix Canvas Background */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15; /* അല്പം മങ്ങിയ രീതിയിൽ ബാക്ക്ഗ്രൗണ്ടിൽ കാണാൻ */
         }
+
+        /* Profile Picture Style */
         .profile-pic {
-            width: 250px;
-            height: 250px;
-            border-radius: 20px;
-            border: 4px solid #ff3333;
-            margin: 20px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid #00ff41; /* Hacker Green */
+            margin-bottom: 20px;
             object-fit: cover;
+            animation: profileGlow 2s infinite alternate;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+            z-index: 1;
         }
+
+        @keyframes profileGlow {
+            from { box-shadow: 0 0 20px rgba(0, 255, 65, 0.4); transform: scale(1); }
+            to { box-shadow: 0 0 40px rgba(0, 255, 65, 0.7); transform: scale(1.05); }
+        }
+
+        h1 {
+            color: #00ff41;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .subtitle i {
+            margin-right: 10px;
+            color: #00ff41;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 320px;
+            z-index: 1;
+        }
+
+        /* Hacker Style Buttons */
         .btn {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 25px;
-            background-color: #ff3333;
-            color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+            color: white;
+            padding: 14px;
+            border-radius: 4px; /* Sharp edges for pro look */
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.3s;
+            border: 1px solid #00ff41;
+            background: rgba(0, 255, 65, 0.05);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: rgba(0, 255, 65, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+
+        .instagram i { color: #e4405f; }
+        .whatsapp i { color: #25D366; }
+        .snapchat i { color: #FFFC00; }
+
+        .footer-text {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 255, 65, 0.05);
+            padding: 10px 0;
+            color: #00ff41;
+            font-size: 0.8rem;
+            font-family: 'Courier New', Courier, monospace;
+            border-top: 1px solid rgba(0, 255, 65, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <h1>Welcome to SHEMIN Website</h1>
-    
-    <marquee scrollamount="10" style="color: #ff3333; font-weight: bold; font-size: 20px;">Welcome to my world! its me shemiiiie ...</marquee>
+    <canvas id="matrix"></canvas>
 
-    <p>Created by me using Visual Studio Code.</p>
+    <img src="photo.jpg" alt="Shemin" class="profile-pic">
 
-    <img src="photo.jpg" alt="Profile Picture" class="profile-pic">
+    <h1>Shemin</h1>
+    <p class="subtitle"><i class="fas fa-laptop-code"></i>its me shemiiiie</p>
 
-    <br>
-    
-    <a href="https://www.instagram.com/sheminhhhh" target="_blank" class="btn">Instagram</a>
-    <a href="https://wa.me/917306527816" target="_blank" class="btn" style="background-color: #25D366; border: none;">WhatsApp</a>
+    <div class="links-container">
+        <a href="https://www.instagram.com/sheminhh" target="_blank" class="btn instagram">
+            <i class="fab fa-instagram"></i> Instagram
+        </a>
+
+        <a href="https://wa.me/917306527816" target="_blank" class="btn whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+
+        <a href="https://www.snapchat.com/add/sheminshinanm" target="_blank" class="btn snapchat">
+            <i class="fab fa-snapchat"></i> Snapchat
+        </a>
+    </div>
+
+    <div class="footer-text">
+        <marquee scrollamount="5">> ACCESS GRANTED... SYSTEM SECURED... WELCOME TO MY PORTFOLIO... </marquee>
+    </div>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#00ff41";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 
 </body>
 </html>
